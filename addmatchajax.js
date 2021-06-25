@@ -1,46 +1,22 @@
 $(function(){
-    loadteams();
-    $("#kka").click(kka);
-    $("#pza").click(pza);
-    $("#qga").click(qga);
-    $("#iua").click(iua);
-    $("#msa").click(msa);
-    $("#lqa").click(lqa);
-
-    $("#kkb").click(kkb);
-    $("#pzb").click(pzb);
-    $("#qgb").click(qgb);
-    $("#iub").click(iub);
-    $("#msb").click(msb);
-    $("#lqb").click(lqb);
+    $("#addmatch").click(addmatch);
 });
 
-function kka() {
-    $("#teama").append("Karachi Kings");
-}
-function pza() {
-    $("#teama").val("Peshawar Zalmi");
-}
-function qga() {
-    $("#teama").val("Quetta Gladiators");
-}
-function iua() {
-    $("#teama").val("Islamabad United");
-}
-function lqa() {
-    $("#teama").val("Lahore Qalandars");
-}
-function kka() {
-    $("#teama").val("");
-}
 
-function handleadda() {
-    var newa = $(".adda").id();
 
-    $("#todos").append();
-}
+function addmatch() {
+    var a = $("#teama").val();
+    var b = $("#teamb").val();
+    var city = $("#city").val();
+    var date = $("#date").val();
 
-function loadteams() {
-    
+    $.ajax({
+        url:"http://localhost:3001/api/match/",
+        method:"POST",
+        data: { a, b, date, city },
+        success:function(response){
+            console.log(response);
+        }
+    });
 }
 
